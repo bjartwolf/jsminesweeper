@@ -4,7 +4,14 @@
   "description": "An implementation of mine sweeper, made as an exercise in a Javascript workshop",
   "main": "index.js",
   "scripts": {
-    "test": "mochify -R progress test/*.js"
+    "serve": "http-server -p 11000 public",
+    "test": "mochify -R progress test/*.js",
+    "autotest": "npm run test -- --watch",
+    "watch": "watchify -t [babelify --presets es2015] -v -d -o public/connect-four.js index.js",
+    "open": "opener http://localhost:11000",
+    "start": "parallelshell 'npm run serve' 'npm run watch' 'npm run open'",
+    "prestart": "npm install",
+    "preautotest": "npm install"
   },
   "repository": {
     "type": "git",
