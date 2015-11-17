@@ -17,7 +17,7 @@ describe('Minesweeper', () => {
 
     it('has correct ids', () => {
       const {tiles} = createGame({cols: 2, rows: 3, mines: 3});
-      expect(tiles[3].id.to.equal(3));
+      expect(tiles[3].id).to.equal(3);
     });
   });
 });

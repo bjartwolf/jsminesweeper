@@ -4,7 +4,8 @@ export function createGame({cols, rows, mines}){
      mines--
      const isMine = mines >= 0
      const mine = {
-       isMine
+       isMine,
+       id
      }
      tiles.push(mine)
   }
