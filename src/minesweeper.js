@@ -28,12 +28,20 @@ export function createGame({cols, rows, mines}){
 
 export function revealTile(game, tileId) {
   let tile = find(game.tiles, tile => tile.id === tileId)
+  if (tile.isRevealed) return
   tile.isRevealed = true;
   if (tile.isMine) {
     game.gameover = true
   } else {
-    const x = filter(getNeighbours(game, tileId), tile => tile.isMine).length;
-    tile.threatCount = x;
+    const neighbors = getNeighbours(game, tileId)
+    const neighborsWithMines = filter(neighbors, tile => tile.isMine);
+    const neighborsWithoutMines = filter(neighbors, tile => !tile.isMine);
+    const unrevealedNeighbors = filter(neighborsWithoutMines, tile => !tile.isRevaled);
+
+    tile.threatCount = neighborsWithMines.length;
+    if (tile.threatCount === 0) {
+      unrevealedNeighbors.forEach(n => revealTile(game, n.id))
+    }
   }
   return game;
 }

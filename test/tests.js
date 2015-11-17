@@ -53,5 +53,11 @@ describe('Minesweeper', () => {
       runtest()
     });
 
+    it('reaveals all tiles if there are no mines', () => {
+      const game = createGame({cols: 10, rows: 10, mines: 0});
+      revealTile(game, 0);
+      expect(game.tiles[90]).has.property('isRevealed', true);
+    });
+
   });
 });
