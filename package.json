@@ -10,8 +10,8 @@
     "watch": "watchify -t [babelify --presets es2015] -v -d -o public/connect-four.js index.js",
     "open": "opener http://localhost:11000",
     "start": "parallelshell 'npm run serve' 'npm run watch' 'npm run open'",
-    "prestart": "npm install",
-    "preautotest": "npm install"
+    "prestart": "npm install"
+
   },
   "repository": {
     "type": "git",
