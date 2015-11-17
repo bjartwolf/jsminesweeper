@@ -33,7 +33,6 @@ export function revealTile(game, tileId) {
     game.gameover = true
   } else {
     const x = filter(getNeighbours(game, tileId), tile => tile.isMine).length;
-    console.log("threatCount " + x)
     tile.threatCount = x;
   }
   return game;
@@ -55,7 +54,6 @@ function getNeighbours(game, tileId) {
           tileId+cols+1, tileId+cols-1,
           tileId-cols+1, tileId-cols-1
         ]), id => id >= 0 && id < cols*rows && id != tileId)
-  console.log("niehgboot " + foo)
   return foo.map( id => game.tiles[id])
 }
 
