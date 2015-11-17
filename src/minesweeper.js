@@ -1,12 +1,12 @@
-import {random} from 'lodash';
+import {random, find} from 'lodash';
 
 export function createGame({cols, rows, mines}){
   let tiles = []
   for (var id = 0; id < rows*cols; id++) {
-     const isMine = false
      const mine = {
-       isMine,
-       id
+       isMine: false,
+       id,
+       isRevealed: false
      }
      tiles.push(mine)
   }
@@ -24,4 +24,17 @@ export function createGame({cols, rows, mines}){
     tiles
   };
   return game
+}
+
+export function revealTile(game, tileId) {
+  let tile = find(game.tiles, tile => tile.id === tileId)
+  tile.isRevealed = true;
+  if (tile.isMine) {
+    game.gameover = true
+  }
+  return game;
+}
+
+export function isGameOver(game){
+  return game.gameover;
 }

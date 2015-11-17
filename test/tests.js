@@ -1,5 +1,5 @@
 import {expect} from 'chai';
-import {createGame} from '../src/minesweeper.js';
+import {createGame, revealTile, isGameOver} from '../src/minesweeper.js';
 
 describe('Minesweeper', () => {
   describe('createGame', () => {
@@ -25,5 +25,32 @@ describe('Minesweeper', () => {
       const game2 = createGame({cols: 10, rows: 10, mines: 30});
       expect(game1).to.not.deep.equal(game2);
     });
+
+    it('set revealed tiles to reveald', () => {
+      const game1 = createGame({cols: 10, rows: 10, mines: 0});
+      revealTile(game1,4)
+      expect(game1.tiles[4].isRevealed).to.be.true
+    });
+
+    it('sets game lost if mine is revealed', () => {
+      const game = createGame({cols: 1, rows: 1, mines: 1});
+      revealTile(game, 0);
+      expect(isGameOver(game)).to.be.true;
+    });
+
+    it('reveals threatcount 1', () => {
+      let runtest = () => {
+        const game = createGame({cols: 1, rows: 2, mines: 1});
+        revealTile(game, 0);
+        const isOver = isGameOver(game)
+        if (isOver) {
+           runtest()
+        } else {
+          expect(game.tiles[1].threatcount).to.equal(1);
+        }
+      }
+      runtest()
+    });
+
   });
 });
