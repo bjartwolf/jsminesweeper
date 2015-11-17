@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/tobiasgwaaler/jsminesweeper/issues"
   },
-  "homepage": "https://github.com/tobiasgwaaler/jsminesweeper#readme"
+  "homepage": "https://github.com/tobiasgwaaler/jsminesweeper#readme",
+  "testDependencies": {
+    "mocha": "^2.3.4"
+  }
 }
