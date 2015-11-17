@@ -19,5 +19,11 @@ describe('Minesweeper', () => {
       const {tiles} = createGame({cols: 2, rows: 3, mines: 3});
       expect(tiles[3].id).to.equal(3);
     });
+
+    it('has a random distribution for mines', () => {
+      const game1 = createGame({cols: 10, rows: 10, mines: 30});
+      const game2 = createGame({cols: 10, rows: 10, mines: 30});
+      expect(game1).to.not.deep.equal(game2);
+    });
   });
 });
