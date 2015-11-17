@@ -1,4 +1,4 @@
-import {random, find} from 'lodash';
+import {random, find, filter, uniq} from 'lodash';
 
 export function createGame({cols, rows, mines}){
   let tiles = []
@@ -31,10 +31,35 @@ export function revealTile(game, tileId) {
   tile.isRevealed = true;
   if (tile.isMine) {
     game.gameover = true
+  } else {
+    const x = filter(getNeighbours(game, tileId), tile => tile.isMine).length;
+    console.log("threatCount " + x)
+    tile.threatCount = x;
   }
   return game;
 }
 
+
+//[0,1,2,3,4,5, 6, 7, 8]
+
+//6 7 8
+//3 4 5
+//0 1 2
+//rows: 3
+//cols: 3
+function getNeighbours(game, tileId) {
+  const {tiles, rows, cols} = game;
+  const foo = filter(
+         uniq([tileId-1, tileId+1,
+          tileId+cols, tileId-cols,
+          tileId+cols+1, tileId+cols-1,
+          tileId-cols+1, tileId-cols-1
+        ]), id => id >= 0 && id < cols*rows && id != tileId)
+  console.log("niehgboot " + foo)
+  return foo.map( id => game.tiles[id])
+}
+
+
 export function isGameOver(game){
-  return game.gameover;
+  return game.gameover === true;
 }

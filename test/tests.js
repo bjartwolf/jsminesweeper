@@ -43,10 +43,11 @@ describe('Minesweeper', () => {
         const game = createGame({cols: 1, rows: 2, mines: 1});
         revealTile(game, 0);
         const isOver = isGameOver(game)
+        console.log(isOver)
         if (isOver) {
            runtest()
         } else {
-          expect(game.tiles[1].threatcount).to.equal(1);
+          expect(game.tiles[0].threatCount).to.equal(1);
         }
       }
       runtest()
