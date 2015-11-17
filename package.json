@@ -1,0 +1,19 @@
+{
+  "name": "jsminesweeper",
+  "version": "1.0.0",
+  "description": "An implementation of mine sweeper, made as an exercise in a Javascript workshop",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tobiasgwaaler/jsminesweeper.git"
+  },
+  "author": "Tobias G. Waaler",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tobiasgwaaler/jsminesweeper/issues"
+  },
+  "homepage": "https://github.com/tobiasgwaaler/jsminesweeper#readme"
+}
